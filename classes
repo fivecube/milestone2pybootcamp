@@ -1,0 +1,41 @@
+import random
+class Newgame(object):
+    def __init__(self):
+        self.deck=4*[i for i in range(1,14)]
+
+class Player(object):
+    def __init__(self,bankroll=100):
+        self.bankroll=bankroll
+        self.hand=0
+    def addbankroll(self,amount):
+        self.bankroll+=amount
+    def handd(self,card):
+        if card==1 and self.hand>=11:
+            self.hand+=1
+        elif card==1 and self.hand<11:
+            self.hand+=11
+        else:
+            if card<11:
+                self.hand+=card
+            else:
+                self.hand+=10
+    def win(self):
+        if self.hand==21:
+            print("BlackJack")
+            return 2
+        elif self.hand>21:
+            print("Winnig and loosing are faces of the same coin, and you are tossing it")
+            print("YOU LOOSE")
+            return 1
+        else:
+            return 0
+    def wind(self):
+        if self.hand==21:
+            print("Dealer got BlackJack")
+            return 2
+        if self.hand>21:
+            print("Dealer got Busted")
+            print("You Won")
+            return 1
+        else:
+            return 0
