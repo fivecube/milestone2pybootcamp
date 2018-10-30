@@ -1,0 +1,52 @@
+def play():
+    global gameover
+    gameover=0
+    p1=Newgame()
+    Dealer=Player(bankroll=1000)
+    Player1=Player()
+    random.shuffle(p1.deck)
+    a=p1.deck.pop()
+    Dealer.handd(a)
+    print("Dealer's 1st card=",a,"and hand is=",Dealer.hand)
+    a=p1.deck.pop()
+    Dealer.handd(a)
+    if Dealer.wind():
+        return
+    print("Dealer does not have blackjack")
+    b=p1.deck.pop()
+    Player1.handd(b)
+    print("Your 1st card=",b,"and your hand is",Player1.hand)
+    while gameover == 0:
+        b = p1.deck.pop()
+        Player1.handd(b)
+        print("Your card={x} and your hand={y}".format(x=b, y=Player1.hand))
+        gameover = Player1.win()
+        if gameover:
+            break
+        s = input("hit or stay[h/s]?")
+        if s == "s":
+            break
+    print("value of gameover=",gameover)
+    print("Dealer's hand is", Dealer.hand)
+    gameover = Dealer.wind()
+    if Dealer.hand==Player1.hand:
+        gameover=1
+        print("Tie")
+    while gameover==0:
+        a=p1.deck.pop()
+        Dealer.handd(a)
+        print("Dealer's card = {x} and Dealer's hand is {y} ".format(x=a,y=Dealer.hand))
+        gameover=Dealer.wind()
+        if gameover:
+            break
+        if Dealer.hand>Player1.hand:
+            gameover=1
+            print("Dealer Won")
+        elif Dealer.hand==Player1.hand:
+            gameover=1
+            print("Tie")
+    if gameover==2:
+        print("Tie")
+
+play()
+print("Hope to see you soon at Mohit's Casino")
