@@ -26,9 +26,8 @@ def play():
         s = input("hit or stay[h/s]?")
         if s == "s":
             break
-    print("value of gameover=",gameover)
-    print("Dealer's hand is", Dealer.hand)
-    gameover = Dealer.wind()
+    if(not gameover):
+        print("Dealer's hand is", Dealer.hand)
     if Dealer.hand==Player1.hand:
         gameover=1
         print("Tie")
